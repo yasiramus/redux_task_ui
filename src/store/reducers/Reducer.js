@@ -1,6 +1,8 @@
 // importation of action types from the actio folder 
 import { ADD_TO_DO, FETCH_TO_DO, COMPLETE_TODO, DELETE_TODO } from "../actions/Actions";
 
+import { LOAD_TO_DO_REQUEST, LOAD_TO_DO_SUCCESS, LOAD_TO_DO_FAILURE } from "../actions/Actions";
+
 export const todoReducer = (state = [], action) => {
     
     switch (action.type) {
@@ -33,7 +35,7 @@ export const todoReducer = (state = [], action) => {
                     { ...status, isCompleted: !status.isCompleted } :
 
                         // else return the default 
-                    { status }
+                    { ...status }
                 
                 )
                 
@@ -56,3 +58,30 @@ export const todoReducer = (state = [], action) => {
     }
 
 } 
+
+export const todoloader = (loader = false, action) => {
+
+    switch (action.type) {
+        
+        case LOAD_TO_DO_REQUEST: {
+
+            return true
+        }
+            
+        case LOAD_TO_DO_SUCCESS: {
+
+            return false
+        }
+        
+        case LOAD_TO_DO_FAILURE: {
+
+            return false
+        }
+    
+        default:
+        
+            return loader;
+        
+    }
+
+};
