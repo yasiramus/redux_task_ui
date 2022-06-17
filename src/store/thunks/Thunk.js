@@ -2,22 +2,27 @@ import { addTodo, fetchTodo, completeTodo, deleteTodo } from "../actions/Actions
 
 import axios from "axios";
 
+import { loadTodoRequest, loadTodoSuccess, loadTodoFailure} from "../actions/Actions";
+
 export const addingNewTodo = textt =>
 
     async dispatch => {
 
         try {
         
+            dispatch(loadTodoRequest())
             const newTodo = await axios.post(`http://localhost:5000/todoApi/`, { text: textt })
         
             console.log(newTodo)
             const { data } = newTodo;
 
             dispatch(addTodo(data))
-           
+           dispatch(loadTodoSuccess())
         } catch (error) {
         
             console.log(error.response)
+
+            dispatch(loadTodoFailure())
 
         }
         
@@ -30,7 +35,10 @@ export const fetchingTodoData = () =>
 
         try {
         
-            const getTodo = await axios.get(`http://localhost:5000/todoApi/`);
+            // const getTodo = await axios.get(`http://localhost:5000/todoApi/`);
+
+            const getTodo = await axios.get(`http://localhost:5000/todo/`);
+
         
             const { data } = getTodo;
 

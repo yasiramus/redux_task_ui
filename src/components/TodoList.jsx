@@ -7,7 +7,7 @@ const TodoList = ({ task, todoDeleted, statusUpdate }) => {
     
     return (
 
-        <div  className=" my-0 mx-96 py-4 px-4 rounded-lg flex justify-between items-center" id="customshadow">
+        <div  className=" my-0 py-4 px-4 rounded-lg flex justify-between items-center md:mx-auto md:max-w-2xl" id="customshadow">
 
             <h3 className="font-base font-semibold">{task.text}</h3>
 
